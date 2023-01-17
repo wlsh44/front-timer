@@ -34,7 +34,7 @@ function startEvent() {
             return;
         }
         time--;
-        showTimer();
+        changeTimerText();
     }, 1000);
 }
 
@@ -42,14 +42,12 @@ function finishTimer() {
     const END_MESSAGE = "종료";
 
     clearInterval(timerEventId);
-    setTimeout(() => {
-        alert(END_MESSAGE)
-    });
+    alert(END_MESSAGE)
 }
 
-function showTimer() {
+function changeTimerText() {
     let timer = document.getElementById("timer");
-    let min = parseInt(time / 60);
+    let min = parseInt(time / ONE_MINUTE);
     let sec = time % 60;
 
     if (min < 10) {
@@ -75,10 +73,10 @@ function addTime(addTime) {
         return;
     }
     time += addTime;
-    showTimer();
+    changeTimerText();
 }
 
 function validateLimitTime(addTime) {
-    const limitTime = 60 * 99;
-    return time + addTime <= limitTime;
+    const LIMIT_MINUTE = 99;
+    return time + addTime <= ONE_MINUTE * LIMIT_MINUTE;
 }
